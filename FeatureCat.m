@@ -94,7 +94,7 @@ function [] = FeatureCat(varargin)
     Results = [];
     Settings = [];
     for a=0.4:0.1:0.4
-        Settings = [Settings; a (1-a) a (1-a) a (1-a) 5 1 1 1 length(dictS_train)];
+        Settings = [Settings; a (1-a) 0 0 0 0 5 1 1 1 length(dictS_train)];
         %Settings = [Settings; 1 1 0 1 1 0 5 b 1 length(dictS_train)];
     end
     
