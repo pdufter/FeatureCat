@@ -157,7 +157,7 @@ function [] = FeatureCat(varargin)
          %weightString = strcat('_w', sprintf('%02.0f',a*10),sprintf('%02.0f',b*10),sprintf('%02.0f',c*10), '_');
          %file = strcat('/mounts/data/proj/sascha/FeatureCat/data/whn_skip-300', weightString, int2str(sentiment_size), 'only');
          file = strcat('tmp.txt');  
-         writeToFile(file, 'w', W_new(:,1:train_size), dictW);
+         writeToFile(file, 'w', W_new(:,1:1), dictW);
 
 %         %% Get top 30
 %         B = Sent(1:20000,1);
