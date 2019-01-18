@@ -1,6 +1,6 @@
 function [] = FeatureCat(varargin)
 
-    wordsFilename = '/mounts/data/proj/sascha/corpora/Embeddings/GoogleNews-vectors-negative300.bin';
+    wordsFilename = '/mounts/data/proj/sascha/corpora/Embeddings/GoogleNews-vectors-negative300.txt';
     load_first_n = 30000;
     if any(strfind(wordsFilename, '.bin'))
         [W, dictW] = loadBinaryFile(wordsFilename, load_first_n);
