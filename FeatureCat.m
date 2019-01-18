@@ -1,14 +1,14 @@
 function [] = FeatureCat(varargin)
 
     wordsFilename = '/mounts/work/philipp/densifier/experiment_data/en,news,whn,whn,80000_wordspace.txt';
-    load_first_n = 80000;
+    load_first_n = 8165;
     if any(strfind(wordsFilename, '.bin'))
         [W, dictW] = loadBinaryFile(wordsFilename, load_first_n);
     else
         [W, dictW] = loadTxtFile(wordsFilename);
         W(:,all(isnan(W),1)) = [];
-        %W = W(1:load_first_n,:);
-        %dictW = dictW(1:load_first_n,:);
+        W = W(1:load_first_n,:);
+        dictW = dictW(1:load_first_n,:);
     end
     
     dim = size(W,2);
