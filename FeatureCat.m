@@ -1,19 +1,14 @@
 function [] = FeatureCat(varargin)
 
-    wordsFilename = '/mounts/data/proj/sascha/corpora/GoogleNews-vectors-negative300.bin';
-    wordsFilename = '/mounts/data/proj/sascha/corpora/word2vec_twitter_model/word2vec_twitter_model.bin';
-    %wordsFilename = '/mounts/data/proj/fadebac/sa/data_manipulated/corpora/events2012_twitter-semeval2015/mikolov/2015-01-23-train_mikolov-no_elongated-skip-50.sh/skip-50';
-    %wordsFilename = '/mounts/data/proj/fadebac/sa/data_manipulated/corpora/events2012_twitter-semeval2015/mikolov/2015-05-18-train_mikolov-no_elongated-skip-300.sh/skip-300';
-    %wordsFilename = '/mounts/data/proj/sascha/corpora/GoogleNews-vectors-negative300_lower.txt';
-    %wordsFilename = '/mounts/data/proj/sascha/corpora/GloVe/glove.twitter.27B.50d.txt';
-    
+    wordsFilename = '/mounts/data/proj/sascha/corpora/Embeddings/GoogleNews-vectors-negative300.bin';
+    load_first_n = 30000;
     if any(strfind(wordsFilename, '.bin'))
-        [W, dictW] = loadBinaryFile(wordsFilename, 30000);
+        [W, dictW] = loadBinaryFile(wordsFilename, load_first_n);
     else
         [W, dictW] = loadTxtFile(wordsFilename);
         W(:,all(isnan(W),1)) = [];
-        W = W(1:30000,:);
-        dictW = dictW(1:30000,:);
+        W = W(1:load_first_n,:);
+        dictW = dictW(1:load_first_n,:);
     end
     
     dim = size(W,2);
@@ -25,9 +20,9 @@ function [] = FeatureCat(varargin)
     
     sentiment_lexicons = {...
         %'/mounts/data/proj/sascha/corpora/Sentiment_Lexicon/whn_inter_gn_twitter.txt', ...
-        '/mounts/data/proj/sascha/corpora/Sentiment_Lexicon/WilWieHof05.txt', ...
+        '/mounts/data/proj/sascha/corpora/Sentiment_Lexicon/whn_train.txt', ...
         %'/mounts/data/proj/sascha/corpora/Sentiment_Lexicon/HuLiu04.txt', ...
-        '/mounts/data/proj/sascha/corpora/Sentiment_Lexicon/NRC-Emotion-Lexicon.txt', ...
+        %'/mounts/data/proj/sascha/corpora/Sentiment_Lexicon/NRC-Emotion-Lexicon.txt', ...
         %'/mounts/data/proj/sascha/corpora/Sentiment_Lexicon/NRC-Hashtag-Sentiment-Lexicon.txt', ...
         %'/mounts/data/proj/sascha/corpora/Sentiment_Lexicon/Sentiment140-Lexicon.txt', ...
         %'/mounts/data/proj/sascha/corpora/Concreteness_Lexicon/bwk_concreteness_train.txt', ...
@@ -79,7 +74,7 @@ function [] = FeatureCat(varargin)
     fclose(fileID);
     polFB = (polFB / 10);
     
-    [pol_SEtrial, dict_SEtrial] = loadTxtFile('/mounts/data/proj/sascha/FeatureCat/semeval2015_taskE_trial.txt');
+    [pol_SEtrial, dict_SEtrial] = loadTxtFile('/mounts/data/proj/sascha/corpora/Sentiment_Lexicon/whn_val.txt');
     [pol_FBtrial, id_FBtrial] = getVectors(dict_SEtrial, polFB, dictFB);
     [~, id_SEtrial] = getVectors(regexprep(dict_SEtrial, '#', ''), W, regexprep(dictW, '#', ''));
     [pol_SEtest, dict_SEtest] = loadTxtFile('/mounts/data/proj/sascha/FeatureCat/semeval2015_taskE.txt');
