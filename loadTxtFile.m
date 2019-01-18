@@ -3,6 +3,8 @@ function [A, dictA] = loadTxtFile( filename )
 	fprintf('Reading word vectors ... ');
     
     fileID = fopen(filename);
+    %skip the first line
+    line = fgetl(fileID);
     line = fgetl(fileID);
     dim = length(strfind(line,' '));
     
