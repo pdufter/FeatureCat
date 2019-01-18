@@ -1,7 +1,7 @@
 function [] = FeatureCat(varargin)
 
-    wordsFilename = '/mounts/data/proj/sascha/corpora/Embeddings/GoogleNews-vectors-negative300.txt';
-    load_first_n = 30000;
+    wordsFilename = '/mounts/work/philipp/densifier/experiment_data/en,news,whn,whn,80000_wordspace.txt';
+    load_first_n = 80000;
     if any(strfind(wordsFilename, '.bin'))
         [W, dictW] = loadBinaryFile(wordsFilename, load_first_n);
     else
@@ -20,7 +20,7 @@ function [] = FeatureCat(varargin)
     
     sentiment_lexicons = {...
         %'/mounts/data/proj/sascha/corpora/Sentiment_Lexicon/whn_inter_gn_twitter.txt', ...
-        '/mounts/work/philipp/densifier/lexicons/unique/whn_train.txt', ...
+        '/mounts/work/philipp/densifier/experiment_data/en,news,whn,whn,80000_dicttrain.txt', ...
         %'/mounts/data/proj/sascha/corpora/Sentiment_Lexicon/HuLiu04.txt', ...
         %'/mounts/data/proj/sascha/corpora/Sentiment_Lexicon/NRC-Emotion-Lexicon.txt', ...
         %'/mounts/data/proj/sascha/corpora/Sentiment_Lexicon/NRC-Hashtag-Sentiment-Lexicon.txt', ...
@@ -74,7 +74,7 @@ function [] = FeatureCat(varargin)
     fclose(fileID);
     polFB = (polFB / 10);
     
-    [pol_SEtrial, dict_SEtrial] = loadTxtFile('/mounts/work/philipp/densifier/lexicons/unique/whn_val.txt');
+    [pol_SEtrial, dict_SEtrial] = loadTxtFile('/mounts/work/philipp/densifier/experiment_data/en,news,whn,whn,80000_dicttest.txt');
     [pol_FBtrial, id_FBtrial] = getVectors(dict_SEtrial, polFB, dictFB);
     [~, id_SEtrial] = getVectors(regexprep(dict_SEtrial, '#', ''), W, regexprep(dictW, '#', ''));
     [pol_SEtest, dict_SEtest] = loadTxtFile('/mounts/work/philipp/densifier/lexicons/unique/semeval2015_taskE.txt');
