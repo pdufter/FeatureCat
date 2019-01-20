@@ -1,7 +1,7 @@
 function [] = FeatureCat(varargin)
 
     wordsFilename = '/mounts/work/philipp/densifier/experiment_data/en,news,whn,whn,80000_wordspace.txt';
-    load_first_n = 8165;
+    load_first_n = 7844;
     if any(strfind(wordsFilename, '.bin'))
         [W, dictW] = loadBinaryFile(wordsFilename, load_first_n);
     else
