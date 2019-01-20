@@ -5,7 +5,6 @@ function [A, dictA] = loadTxtFile( filename )
     fileID = fopen(filename);
     %skip the first line
     line = fgetl(fileID);
-    line = fgetl(fileID);
     dim = length(strfind(line,' '));
     
     frewind(fileID);
