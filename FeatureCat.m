@@ -6,9 +6,9 @@ function [] = FeatureCat(varargin)
         [W, dictW] = loadBinaryFile(wordsFilename, load_first_n);
     else
         [W, dictW] = loadTxtFile(wordsFilename);
-        W(:,all(isnan(W),1)) = [];
-        W = W(1:load_first_n,:);
-        dictW = dictW(1:load_first_n,:);
+        %W(:,all(isnan(W),1)) = [];
+        W = W(2:load_first_n+1,:);
+        dictW = dictW(2:load_first_n+1,:);
     end
     
     dim = size(W,2);
