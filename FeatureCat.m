@@ -7,8 +7,8 @@ function [] = FeatureCat(varargin)
     else
         [W, dictW] = loadTxtFile(wordsFilename);
         %W(:,all(isnan(W),1)) = [];
-        W = W(2:load_first_n+1,:);
-        dictW = dictW(2:load_first_n+1,:);
+        W = W(2:load_first_n,:);
+        dictW = dictW(2:load_first_n,:);
     end
     
     dim = size(W,2);
