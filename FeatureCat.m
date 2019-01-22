@@ -132,11 +132,11 @@ function [] = FeatureCat(wordsFilename, load_first_n, mysent_train, mysent_test,
         if corr(polC_train,Conc(c_train),'type','Kendall') < 0
             Conc = Conc .* -1;
         end
-        Freq = (D_freq * E * W')';
-        sample = randsample(1:load_first_n, 1000, true);
-        if corr(sample', Freq(sample),'type','Kendall') < 0
-            Freq = Freq .* -1;
-        end        
+        %Freq = (D_freq * E * W')';
+        %sample = randsample(1:load_first_n, 1000, true);
+        %if corr(sample', Freq(sample),'type','Kendall') < 0
+        %    Freq = Freq .* -1;
+        %end        
         
 %         figure('Visible','on');
 %         % smooth data
@@ -171,7 +171,7 @@ function [] = FeatureCat(wordsFilename, load_first_n, mysent_train, mysent_test,
 %         fprintf('Correlation Frequency (%d/%d): %d\n', length(sample), length(sample), kendall);
 %         figure('Visible','on');
 %         scatter(sample, Freq(sample,:), 2, Freq(sample,:), 'filled');
-        results = [results printResults('FREQUENCY', sample', Freq(sample), 0)];
+        %results = [results printResults('FREQUENCY', sample', Freq(sample), 0)];
 
         %% Concreteness Task        
 %         figure('Visible','on');
