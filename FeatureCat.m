@@ -122,8 +122,9 @@ function [] = FeatureCat(wordsFilename, load_first_n, mysent_train, mysent_test,
         D_sent = D(01:00+sent_size,:);
         D_conc = D(11:10+conc_size,:);
         D_freq = D(21:20+freq_size,:);
-
+        tic;
         [J_history, E] = train(Settings(w,1:6), E, D_sent, D_conc, D_freq, num_iters, learning_rate, batchsize, W, s_pos, s_neg, c_pos, c_neg);
+        toc;
         Sent = (D_sent * E * W')';
         if corr(polS_train,Sent(s_train),'type','Kendall') < 0
             Sent = Sent .* -1;
