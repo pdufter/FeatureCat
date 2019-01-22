@@ -133,7 +133,7 @@ function [] = FeatureCat(wordsFilename, load_first_n, mysent_train, mysent_test,
             Conc = Conc .* -1;
         end
         Freq = (D_freq * E * W')';
-        sample = randsample(1:5000, 1000, true);
+        sample = randsample(1:load_first_n, 1000, true);
         if corr(sample', Freq(sample),'type','Kendall') < 0
             Freq = Freq .* -1;
         end        
