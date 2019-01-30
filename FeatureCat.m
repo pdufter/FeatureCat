@@ -151,7 +151,7 @@ function [] = FeatureCat(wordsFilename, load_first_n, mysent_train, mysent_test,
 %         figure('Visible','on');
 %         scatter(1:length(Freq), Freq(:,1), 2, Sent(:,1), 'filled');
         
-        plotConvergence(J_history);
+        plotConvergence(J_history, strcat(outfile, '_plot'));
         
 %         %% Save Transformed Vectors
          W_new = (E * W')';
@@ -225,7 +225,7 @@ function [] = FeatureCat(wordsFilename, load_first_n, mysent_train, mysent_test,
 %     close(h);
 end
 
-function [] = plotConvergence(J_history)
+function [] = plotConvergence(J_history, plotfilename)
 
     num_iters = size(J_history, 1);
 
@@ -250,7 +250,7 @@ function [] = plotConvergence(J_history)
     plot(1:smoothing:num_iters, (J_history(:,8) / max(J_history(:,8))), '-', 'Color', [0.3 0.3 0.3]);
     legend('max sent','min sent', 'max conc', 'min conc', 'max freq', 'min freq', 'norm', 'learning rate');
     xlabel('iteration');
-    print(fig,'MySavedPlot','-dpng');
+    print(fig,plotfilename,'-dpng');
     
 end
 
