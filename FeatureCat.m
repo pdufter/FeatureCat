@@ -238,7 +238,7 @@ function [] = plotConvergence(J_history)
     J_history = J_history_smooth;
 
     % Plot the convergence graph 
-    figure('Visible','on');
+    fig = figure('Visible','off');
     hold on;    
     plot(1:smoothing:num_iters, (J_history(:,1) / max(J_history(:,1))), '-', 'LineWidth', 2);
     plot(1:smoothing:num_iters, (J_history(:,2) / max(J_history(:,2))), ':', 'LineWidth', 2);
@@ -250,6 +250,7 @@ function [] = plotConvergence(J_history)
     plot(1:smoothing:num_iters, (J_history(:,8) / max(J_history(:,8))), '-', 'Color', [0.3 0.3 0.3]);
     legend('max sent','min sent', 'max conc', 'min conc', 'max freq', 'min freq', 'norm', 'learning rate');
     xlabel('iteration');
+    print(fig,'MySavedPlot','-dpng');
     
 end
 
