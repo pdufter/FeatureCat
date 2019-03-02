@@ -93,7 +93,7 @@ function [] = FeatureCat(wordsFilename, load_first_n, mysent_train, mysent_test,
     
     Results = [];
     Settings = [];
-    for a=0.4:0.1:0.4
+    for a=0.5:0.1:0.5
         Settings = [Settings; a (1-a) 0 0 0 0 5 1 1 1 length(dictS_train)];
         %Settings = [Settings; 1 1 0 1 1 0 5 b 1 length(dictS_train)];
     end
